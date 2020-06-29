@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import App from "./Layout/App";
 import * as serviceWorker from "./serviceWorker";
 import CombinedReducers from "./Common/Redux/CombinedReducers";
