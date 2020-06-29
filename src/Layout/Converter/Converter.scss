@@ -1,0 +1,12 @@
+@import "src/Common/Style/Variables";
+
+.Converter{
+  padding: 50px;
+  .Converter_Header{
+    font-size: 1.6rem;
+    color: $color-main-blue;
+    font-weight: bold;
+    padding: 0px 0px 30px 0px;
+    margin: 0px;
+  }
+}

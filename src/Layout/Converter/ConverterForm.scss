@@ -1,0 +1,132 @@
+@import "src/Common/Style/Variables";
+
+.ConverterForm{
+  & > * {
+    margin: 10px 0px 0px 0px;
+  }
+  .ConverterForm_FullLine{
+    width: 100%;
+    $height: 40px;
+    $currencyWidth: 50px;
+    input, label{
+      display: inline-block;
+      border: none;
+      border-bottom: 2px solid #b1bdce;
+      height: $height;
+      box-sizing: border-box;
+      background-color: unset;
+      vertical-align: middle;
+    }
+    input{
+      padding: 10px;
+      color: $color-text;
+      &:focus{
+        outline: none;
+        border-bottom: 2px solid $color-main-blue;
+        & ~ label{
+          border-bottom: 2px solid $color-main-blue;
+        }
+      }
+      width: calc(100% - #{$currencyWidth});
+      &::placeholder{
+        color: $color-text-light-grey;
+        font-size: 0.8rem;
+        font-weight: lighter;
+      }
+    }
+    label{
+      line-height: $height;
+      width: $currencyWidth;
+      color: $color-text-light-grey;
+      font-size: 0.8rem;
+      font-weight: lighter;
+    }
+    span{
+      text-align: left;
+    }
+  }
+  .ConverterForm_DoubleSelect{
+    $height: 40px;
+    $markWidth: 70px;
+    margin: 20px 0px 0px 0px;
+    & > *{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    button{
+      margin: 0px;
+      padding: 0px;
+      width: $markWidth;
+      line-height: $height;
+      user-select: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $color-text;
+      &:hover, &:focus{
+       color: $color-main-blue;
+      }
+      &::-moz-focus-inner {
+        border: 0;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+    .ConverterForm_Select{
+      position: relative;
+      width: calc(50% - #{$markWidth / 2});
+      height: $height;
+      select{
+        height: 100%;
+        width: 100%;
+        padding: 0px 10px;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: $color-text;
+        &:focus{
+          outline: none;
+        }
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+      }
+    }
+    span{
+      text-align: left;
+      margin-top: 5px;
+    }
+  }
+  button[type="submit"]{
+    padding: 20px;
+    background-color: $color-main-blue;
+    color: #FFF;
+    border: none;
+    width: 100%;
+    border-radius: 50px;
+    cursor: default;
+    &:disabled{
+      background-color: $color-main-gray;
+    }
+    &:not(:disabled){
+      cursor: pointer;
+    }
+    &:focus{
+      outline: none;
+    }
+    &:not(:disabled):hover, &:focus{
+      background-color: $color-main-blue-hover;
+    }
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+  .ConverterForm_Error{
+    display: block;
+    font-size: 0.6rem;
+    color: #FF0000;
+    min-height: 15px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,96 @@
+import React, { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
+import "./CustomSelect.scss";
+import Select from "react-select";
+
+const CustomSelect = (params) => {
+  console.log(params);
+  const selectElement = useRef(null);
+  const selectElementList = useRef(null);
+  const [isListShown, setListShawn] = useState(false);
+  const { input, options } = params;
+  const handleClickOutside = (e) => {
+    if (selectElement && !selectElement.current.contains(e.target)) {
+      setListShawn(false);
+      input.onBlur();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
+  return (
+    <div className="CustomSelect" ref={selectElement}>
+      <div
+        tabIndex={0}
+        role="button"
+        onClick={() => {
+          setListShawn(!isListShown);
+        }}
+        onFocus={() => {
+          setListShawn(true);
+        }}
+        onKeyPress={(e) => {
+          if (!isListShown) setListShawn(!isListShown);
+          if (!selectElementList.current) return;
+          if (e.key && e.key.length === 1 && e.key.match(/[a-z]/i)){
+            const elementToScrollTo = selectElementList.current.querySelector(`[data-value^="${e.key.toUpperCase()}"]`);
+            if (elementToScrollTo) {
+              selectElementList.current.scrollTop = elementToScrollTo.offsetTop;
+              elementToScrollTo.focus();
+            }
+          }
+        }}
+        className={`CustomSelect_Header${
+          isListShown ? " CustomSelect_Header-Opened" : ""
+        }`}
+      >
+        {input.value}
+      </div>
+      {isListShown && (
+        <ul
+          className={`CustomSelect_List${
+            isListShown ? " CustomSelect_Header-Opened" : ""
+          }`}
+          ref={selectElementList}
+        >
+          {options.map(({ value, label }) => (
+            <li
+              className="CustomSelect_List_Element"
+              data-value={value}
+              key={value}
+              onClick={() => {
+                input.onChange(value);
+                setListShawn(false);
+              }}
+              onKeyPress={(e) => {
+                input.onChange(value);
+                setListShawn(false);
+              }}
+            >
+              {label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+// const CustomSelect2 = (params) => {
+//   return <Select {...params} />;
+// }
+
+CustomSelect.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })
+  ).isRequired,
+};
+
+CustomSelect.defaultProps = {};
+
+export default CustomSelect;

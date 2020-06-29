@@ -1,0 +1,23 @@
+@import "src/Common/Style/Variables";
+
+.ConversionHistory{
+  display: inline-block;
+  .ConversionHistory_ClearButton{
+    background: none;
+    border: none;
+    color: #FFF;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+    &:focus{
+      outline: none;
+    }
+    &:hover, &:focus{
+      color: $color-text-light-grey;
+    }
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}

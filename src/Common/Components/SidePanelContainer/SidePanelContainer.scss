@@ -1,0 +1,87 @@
+@import "src/Common/Style/Variables";
+
+.SidePanelContainer{
+  $sideButtonSize: 40px;
+  $borderRadius: 20px;
+  $height: 300px;
+  //overflow: hidden;
+
+  position: relative;
+  padding-right: $sideButtonSize;
+  background: $gradient_blue;
+  border-radius: $borderRadius + 1px $borderRadius $borderRadius $borderRadius + 1px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  height: 100%;
+
+  .SidePanelContainer_Content {
+    white-space: nowrap;
+    height: 100%;
+    display: flex;
+    & > *{
+      display: inline-block;
+      vertical-align: top;
+      flex: 1;
+    }
+    .SidePanelContainer_Content_Main {
+      background-color: #FFF;
+      border-radius: $borderRadius;
+      min-height: 200px;
+      min-width: 400px;
+    }
+    .SidePanelContainer_Content_Side {
+      overflow: hidden;
+      width: 10px;
+      transition: width 300ms cubic-bezier(0.04, 0.69, 0.15, 1.14);
+      will-change: width;
+      & > div{
+        margin: 10px 20px;
+        display: inline-block;
+        vertical-align: middle;
+        box-sizing: border-box;
+      }
+      &:before{
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        width: 0px;
+      }
+    }
+  }
+  .SidePanelContainer_Button{
+    line-height: $sideButtonSize;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    left: calc(100% - #{$sideButtonSize + 5px});
+    top: 40px;
+    transform:rotate(90deg);
+    transform-origin: $sideButtonSize/2 $sideButtonSize/2 0;
+    color: rgba(255,255,255,0.5);
+    font-weight: bold;
+    user-select: none;
+    white-space: nowrap;
+    &:focus{
+      outline: none;
+    }
+    &::-moz-focus-inner {
+      border: 0;
+    }
+    p{
+      padding: 0;
+      margin: 0 10px 0 0;
+      display: inline-block;
+      font-weight: 900;
+      color: transparent;
+    }
+    &.SidePanelContainer_Button-Opened{
+      color: #FFF;
+      p{
+        color: #FFF;
+      }
+    }
+  }
+}
