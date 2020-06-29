@@ -12,7 +12,9 @@ const App = () => {
       <CentralizedWrapper>
         <SidePanelContainer
           sideHeader="Historia"
-          sidePanel={({opened}) => (<ConversionHistory disableButtons={!opened}/>)}
+          sidePanel={({ opened }) => (
+            <ConversionHistory disableButtons={!opened} />
+          )}
         >
           <Converter />
         </SidePanelContainer>
